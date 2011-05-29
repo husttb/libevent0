@@ -263,9 +263,10 @@ static void bufevent_writecb_end(struct bufevent *bufev, int res)
 		goto error;
 	}
 
-	if (EVBUFFER_LENGTH(bufev->output) != 0)
+	if (EVBUFFER_LENGTH(bufev->output) != 0) {
 		bufevent_change_write_event(bufev, EV_WRITE);
-	else
+		return;
+	} else
 		event_del(&bufev->ev_write);
 
 	if (bufev->writecb != NULL)
