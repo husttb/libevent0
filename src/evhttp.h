@@ -299,9 +299,12 @@ void evhttp_connection_set_base(struct evhttp_connection *evcon,
 void evhttp_connection_get_peer(struct evhttp_connection *evcon,
     char **address, u_short *port);
 
-/** Upgrade this connection. */
+/** Upgrades this connection. */
 void evhttp_connection_upgrade(struct evhttp_connection *evcon,
     void (*cb)(struct bufevent *bufev, void *arg), void *cb_arg);
+
+/** Checks security of this connection. Return 1 if secure and 0 otherwise*/
+int evhttp_connection_is_secure(struct evhttp_connection *evcon);
 
 /** The connection gets ownership of the request */
 int evhttp_make_request(struct evhttp_connection *evcon,

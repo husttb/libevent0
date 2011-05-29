@@ -1861,6 +1861,12 @@ evhttp_connection_upgrade(struct evhttp_connection *evcon,
 }
 
 int
+evhttp_connection_is_secure(struct evhttp_connection *evcon)
+{
+	return (evcon->flags & EVHTTP_CON_SECURE);
+}
+
+int
 evhttp_connection_connect(struct evhttp_connection *evcon)
 {
 	if (evcon->state == EVCON_CONNECTING)
@@ -1961,6 +1967,7 @@ evhttp_connection_connect_ssl(struct evhttp_connection *evcon, SSL_CTX *ctx)
 	bufevent_set_ssl(evcon->bufev, ssl);
 
 	evcon->state = EVCON_CONNECTING;
+	evcon->flags |= EVHTTP_CON_SECURE;
 
 	return (0);
 }
