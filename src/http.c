@@ -2475,6 +2475,7 @@ accept_socket_ssl_continue(int fd, SSL *ssl, void *arg)
 	struct evhttp_connection *evcon = arg;
 
 	bufevent_set_ssl(evcon->bufev, ssl);
+	evcon->flags |= EVHTTP_CON_SECURE;
 
 	if (evhttp_associate_new_request_with_connection(evcon) == -1)
 		evhttp_connection_free(evcon);
