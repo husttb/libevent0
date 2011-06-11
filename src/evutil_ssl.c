@@ -52,7 +52,7 @@ static void evutil_ssl_continue_accept(int sock, short type, void *arg)
 
 void evutil_ssl_accept(int fd, SSL_CTX *ctx, accept_cb cb, void *arg)
 {
-	struct evutil_ssl_accept *evsa = malloc(sizeof(struct evutil_ssl_accept));
+	struct evutil_ssl_accept *evsa = calloc(1, sizeof(struct evutil_ssl_accept));
 	if (evsa == NULL) {
 		event_warn("%s : malloc failed", __func__);
 		return;
@@ -160,7 +160,7 @@ SSL *evutil_ssl_get_ssl(SSL_CTX *ctx)
 
 void evutil_ssl_connect(int fd, SSL *ssl, accept_cb cb, void *arg)
 {
-	struct evutil_ssl_accept *evsa = malloc(sizeof(struct evutil_ssl_accept));
+	struct evutil_ssl_accept *evsa = calloc(1, sizeof(struct evutil_ssl_accept));
 	if (evsa == NULL) {
 		event_warn("%s : malloc failed", __func__);
 		return;
