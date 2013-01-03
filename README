@@ -1,0 +1,13 @@
+Addition to libevent for support of encrypted connections via TLS/SSL
+
+BUILDING AND INSTALLATION 
+
+$ autoreconf --install -I ./
+$ ./configure
+$ make
+$ make check # (optional, run tests)
+$ sudo make install
+
+DOCUMENTATION
+
+A library documentation available on libevent0 wiki: https://github.com/iantropov/libevent0/wiki
